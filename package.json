@@ -1,0 +1,26 @@
+{
+  "name": "koa-json-router",
+  "version": "1.0.0",
+  "description": "Convenience koa-router wrapper for JSON APIs",
+  "main": "src/router.js",
+  "dependencies": {
+    "koa-router": "^7.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "chai": "^3.5.0",
+    "eslint": "^3.12.2",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.spec.js",
+    "test:watch": "mocha -w test/**/*.spec.js"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
+  "author": "Steven White <swhitewvu24@gmail.com>",
+  "license": "MIT"
+}
