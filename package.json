@@ -7,7 +7,10 @@
     "koa-router": "^7.0.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.20.0",
     "babel-eslint": "^7.1.1",
+    "babel-preset-es2015-node4": "^2.1.0",
     "chai": "^3.5.0",
     "eslint": "^3.12.2",
     "mocha": "^3.2.0",
@@ -23,7 +26,7 @@
     "test:watch": "mocha -w test/**/*.spec.js"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 4"
   },
   "author": "Steven White <swhitewvu24@gmail.com>",
   "license": "MIT"
