@@ -1,5 +1,7 @@
 # koa-json-router
 
+![](https://api.travis-ci.org/swhite24/koa-json-router.svg?branch=master)
+
 Simple wrapper for [koa-router@next](https://github.com/alexmingoia/koa-router/tree/master/) which assumes the resolved value from a handler is the desired return value.
 
 ## Installation
