@@ -66,7 +66,7 @@ module.exports = class Router extends KoaRouter {
    */
   _wrap(handlers) {
     return ctx => {
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         handlers
           .reduce((promise, handler) => {
             return promise.then(() => handler(ctx));
@@ -76,7 +76,8 @@ module.exports = class Router extends KoaRouter {
             ctx.body = JSON.stringify(payload);
             ctx.status = 200;
             resolve();
-          });
+          })
+          .catch(reject);
       });
     };
   }
