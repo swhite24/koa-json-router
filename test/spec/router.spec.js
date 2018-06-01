@@ -1,6 +1,5 @@
-
 const KoaJsonRouter = require('../../src/router');
-const { methods, handler, payload } = require('../util/data');
+const { methods, handler, customHandler, payload } = require('../util/data');
 
 describe('koa-json-router', () => {
   it('should deliver a function', () => {
@@ -23,7 +22,7 @@ describe('koa-json-router', () => {
     });
 
     methods.forEach(method =>
-      it(`should wrap ${ method } methods`, () => {
+      it(`should wrap ${method} methods`, () => {
         router[method]('/foo');
         expect(router._wrap).to.have.been.called;
       })
@@ -40,8 +39,24 @@ describe('koa-json-router', () => {
             expect(ctx.type).to.equal('application/json');
             expect(ctx.body).to.equal(JSON.stringify(payload));
             resolve();
-          }).catch(err => reject(err));
-      })
-    );
+          })
+          .catch(err => reject(err));
+      }));
+
+    it('should allow status code override', () => {
+      new Promise((resolve, reject) => {
+        const wrappedHandler = router._wrap([customHandler]);
+
+        const ctx = {};
+        wrappedHandler(ctx)
+          .then(() => {
+            expect(ctx.status).to.equal(201);
+            expect(ctx.type).to.equal('application/json');
+            expect(ctx.body).to.equal(JSON.stringify(payload));
+            resolve();
+          })
+          .catch(err => reject(err));
+      });
+    });
   });
 });
