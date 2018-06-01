@@ -5,7 +5,6 @@
 const KoaRouter = require('koa-router');
 
 module.exports = class Router extends KoaRouter {
-
   /**
    * Instantiate new router
    * @param {String} prefix
@@ -48,7 +47,10 @@ module.exports = class Router extends KoaRouter {
    * @param {Function} handler
    */
   delete(endpoint) {
-    super.delete(endpoint, this._wrap(Array.prototype.slice.call(arguments, 1)));
+    super.delete(
+      endpoint,
+      this._wrap(Array.prototype.slice.call(arguments, 1))
+    );
   }
 
   /**
@@ -74,7 +76,8 @@ module.exports = class Router extends KoaRouter {
           .then(payload => {
             ctx.type = 'application/json';
             ctx.body = JSON.stringify(payload);
-            ctx.status = 200;
+            ctx.status =
+              (ctx.status && (ctx.status === 404 ? 200 : ctx.status)) || 200;
             resolve();
           })
           .catch(reject);
